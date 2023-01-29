@@ -1,7 +1,7 @@
 <template>
 <div class="banner-box">
-            <div class="banner-title1">归档</div>
-            <div class="banner-title2">随笔</div>
+            <div class="banner-title">归档</div>
+            <div class="banner-sub-title">随笔</div>
         </div>
     <div class="archives-box">
         <div v-for="yearList in data">
@@ -34,24 +34,6 @@ const data = computed(() => useYearSort(theme.value.posts))
     padding: 16px 0 8px 0;
     font-size: 1.4rem;
     font-weight: 600;
-}
-.banner-box {
-    height: 320px;
-    padding-left: 20vw;
-    background-color: #fbfafc;
-}
-.banner-title1 {
-    margin: 0 auto;
-    padding-top: 80px;
-    color: #5248b5;
-    font-size: 44px;
-}
-.banner-title2 {
-    margin: 0 auto;
-    padding-top: 20px;
-    opacity: 0.2;
-    color: #171a2e;
-    font-size: 34px;
 }
 .archives-box{
     margin: 20px 20vw;

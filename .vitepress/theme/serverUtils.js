@@ -11,7 +11,8 @@ async function getPosts() {
         paths.map(async (item) => {
             const content = await fs.readFile(item, 'utf-8')
             const { data } = matter(content)
-            data.description = data.description?data.description:'这是一个简短描述。'
+			const title = data.title?data.title:'这是一个简短描述，但是这篇随笔没有描述。'
+            data.description = data.description?data.description:title
             data.date = _convertDate(data.date)
             return {
                 frontMatter: data,
@@ -38,7 +39,7 @@ async function generatePaginationPages(pageSize) {
 ---
 page: true
 date: 2021-06-30
-title: ${i === 1 ? '随笔' : 'page_' + i}
+title: ${i === 1 ? '技术随笔' : 'page_' + i}
 sidebar: false
 ---
 <script setup>

@@ -7,39 +7,35 @@ const items = useSideBar()
 </script>
 
 <template>
-  <div class="mark-box" v-if="items.length > 0"></div>
+	<div class="seize-a-seat" v-if="items.length > 0"></div>
   <div class="home" v-if="items.length > 0">
     <h2>💡 目录</h2>
     <ul  class="sidebar-links">
      <SideBarLink v-for="(item,index) of items" :item="item" :key="index"/>
   </ul>
   </div>
-  
+
 </template>
 <style scoped>
 .home{
-    width: 300px;
-    max-width: 20vw;
+	position: fixed;
+	top: 10vh;
+	bottom: 10vh;
+	left: 20px;
+    width: 20vw;
+	height: 80vh;
     background-color: #f0faf9;
     border-radius: 10px;
     padding: 20px;
-    position: fixed;
-    top: 76px;
-    left: 30px;
-    height: 80vh;
     overflow: scroll;
-    bottom: 80px;
     background-image: linear-gradient(180deg, #fff, #fff);
     box-shadow: 0 2px 7px 0 rgb(5 34 97 / 10%);
-    padding-top: 0;
+    margin-right: 20px;
+	margin-top: 20px;
 }
-.mark-box{
-    width: 300px;
-    max-width: 20vw;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 40px;
-    height: 100%;
+.seize-a-seat{
+	width: 24vw;
+	height: 80vh;
 }
 .sidebar-links{
     list-style: revert;

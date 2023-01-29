@@ -7,7 +7,20 @@ type Post = {
     }
     regularPath: string
 }
-
+export function getTags(post: Post[]) {
+    let data: Array = [];
+    for (let index = 0; index < post.length; index++) {
+        const element = post[index]
+        const tags = element.frontMatter.tags
+        if (tags&&tags.length>0) {
+            tags.forEach((item) => {
+                data.push(item);
+            })
+        }
+    }
+    data = [...new Set(data)];
+    return data.sort();
+}
 export function initTags(post: Post[]) {
     const data: any = {}
     for (let index = 0; index < post.length; index++) {

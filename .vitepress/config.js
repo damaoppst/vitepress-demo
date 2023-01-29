@@ -16,7 +16,6 @@ async function config() {
             nav: [
                 { text: '首页', link: '/' ,icon:'🌊'},
                 { text: 'DEMO', link: '/pages/demo',icon:'🌞' },
-                { text: '标签分类', link: '/pages/tag' ,icon:'💡'},
                 { text: '搜索', link: '/pages/search' ,icon:'🔎'},
             ],
             banner:{
@@ -25,7 +24,7 @@ async function config() {
                 description:'路在脚下，踏实一步步走。'
             }
         },
-        srcExclude: ['README.md'] 
+        srcExclude: ['README.md']
     }
 }
 

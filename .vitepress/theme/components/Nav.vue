@@ -5,7 +5,7 @@
         </div>
         <div class="nav-box">
             <div class="nav-list">
-                <a :href="item.link" class="nav-item" v-for="(item, key) in data" :key="key"><span>{{item.icon}} {{item.text}}</span></a>
+                <a :href="item.link" class="nav-item"  v-for="(item, key) in data" :key="key" :target="item.target" ><span>{{item.text}}</span></a>
             </div>
         </div>
     </header>
@@ -16,24 +16,18 @@ import { useData } from 'vitepress'
 const { theme } = useData()
 const data = theme.value.nav;
 const logoTitle = theme.value.logoTitle;
+
 </script>
 <style scoped>
 .header-box {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 70px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    flex-wrap: wrap;
     background-color: #fff;
+    box-shadow: 0 2px 7px 0 rgb(5 34 97 / 10%);
 }
 
-.header-box .logo-box {
-    width: 120px;
-}
 
 .header-box .logo-title {
     font-size: 20px;
@@ -51,14 +45,17 @@ const logoTitle = theme.value.logoTitle;
 }
 
 .header-box .nav-item {
-    height: 40px;
     line-height: 40px;
-    padding-right: 6px;
-    margin:0 10px;
+    padding: 8px 16px;
+	font-weight: 700;
 }
 
 .header-box .nav-item:hover {
     border-radius: 6px;
+    background-color: #f0eefd;
+}
+.active{
+     border-radius: 6px;
     background-color: #f0eefd;
 }
 </style>

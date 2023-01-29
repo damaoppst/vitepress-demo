@@ -42,6 +42,7 @@ h1 {
 h2 {
     font-size: 1.125rem;
     margin-bottom: inherit;
+	max-width: 70vw;
 }
 h3 {
     font-size: 1rem;
@@ -66,14 +67,81 @@ h2+h3+h3+h4+h5{
     }
     ::-webkit-scrollbar-thumb:window-inactive {
     background:#fff;
-}  
+}
 
 
 /* 文章详情留白左边区域 */
 .content{
     flex: 1;
-    margin: 60px 0;
 }
 div[class*='language-']{
-    max-width: 60vw;
+    max-width: 70vw;
+}
+.content p{
+    max-width: 70vw;
+}
+.content p a[rel="noopener noreferrer"]{
+	color: #1a7632;
+}
+.banner-box {
+    height: 240px;
+}
+.banner-box {
+	background-color: #f7f7f7;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.banner-title {
+    margin-left: 20vw;
+    color: #5248b5;
+    font-size: 44px;
+}
+.banner-sub-title {
+    margin-left: 20vw;
+    opacity: 0.2;
+    color: #171a2e;
+    font-size: 34px;
+}
+.list{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    max-width: 70vw;
+    margin: 0 auto;
+}
+.list .list-item{
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #e9e8e8;
+    flex-basis: 30vw;
+    margin: 10px;
+    height: 120px;
+    color: #2c3e50;
+}
+.list-item .title-item{
+    display: block;
+    font-weight: 700;
+    line-height: 2;
+    width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.list-item .content-item{
+    line-height: 2;
+    font-size: 14px;
+    width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.list-item .date-item{
+    line-height: 2;
+    font-size: 12px;
+    width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

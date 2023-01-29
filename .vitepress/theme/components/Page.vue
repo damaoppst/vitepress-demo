@@ -1,70 +1,45 @@
 <template>
     <div>
         <div class="banner-box">
-            <div class="banner-item1">{{banner.title}}</div>
-            <div class="banner-item2">{{banner.subTitle}}</div>
-            <div class="banner-item3">{{banner.description}}</div>
+            <div class="banner-title">{{banner.title}}</div>
+            <div class="banner-sub-title">{{banner.subTitle}}</div>
+            <div class="banner-desc">{{banner.description}}</div>
         </div>
        <div class="container mg-t">
-           <div class="category">
-               <div class="item item-bg1">
-                    <div>💡</div>
-                    <div class="title">A地址手册</div>
-                   <div class="icon"><a href="" target="__blank">➣➣</a></div>
+
+            <div class="list">
+                <div class="list-item" v-for="(article, index) in posts" :key="index">
+                    <a class="title-item" :href="withBase(article.regularPath)"> {{ article.frontMatter.title }}</a>
+                    <div class="content-item">{{ article.frontMatter.description }}</div>
+                    <div class="date-item">{{ article.frontMatter.date }}</div>
                 </div>
-                <div class="item item-bg2">
-                    <div>💡</div>
-                    <div class="title">B地址手册</div>
-                   <div class="icon"><a href="" target="__blank">➣➣</a></div>
-                </div>
-                <div class="item item-bg3">
-                    <div>💡</div>
-                    <div class="title">C地址手册</div>
-                   <div class="icon"><a href="" target="__blank">➣➣</a></div>
-                </div>
-           </div>
-            <div
-                class="card"
-                v-for="(article, index) in posts" :key="index"
-            >
-                <div class="title">
-                    <a :href="withBase(article.regularPath)"> {{ article.frontMatter.title }}</a>
-                    <div class="title2">{{ article.frontMatter.date }}</div>
-                </div>
-                <p class="card-content">
-                    {{
-                        article.frontMatter.description
-                    }}
-                </p>
             </div>
-                    <div class="pagination">
-                    <a
-                        class="link"
-                        :class="{ active: pageCurrent === i }"
-                        v-for="i in pagesNum"
-                        :key="i"
-                        :href="withBase(i === 1 ? '/index.html' : `/page_${i}.html`)"
-                        >{{ i }}</a
-                    >
-                </div>
+            <div class="pagination">
+                <a
+                    class="link"
+                    :class="{ active: pageCurrent === i }"
+                    v-for="i in pagesNum"
+                    :key="i"
+                    :href="withBase(i === 1 ? '/index.html' : `/page_${i}.html`)"
+                    >{{ i }}</a
+                >
+            </div>
         </div>
 
     </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { Article } from 'shims-vue';
 import { useData, withBase } from 'vitepress'
-import { initTags } from '../functions'
 
 const props = defineProps({
-    posts: Array,
+    posts: Array<Article>,
     pageCurrent: Number,
     pagesNum: Number
 })
 
 const { theme } = useData()
-const data = computed(() => initTags(theme.value.posts))
 
 const banner = theme.value.banner;
 </script>
@@ -83,9 +58,9 @@ const banner = theme.value.banner;
     margin-bottom: 20px;
 }
 .category .item{
-    flex-basis: 30%;
-    margin: 0 1%;
+    flex: 1;
     padding: 30px 40px;
+    margin: 4px;
     font-size: 16px;
     border-radius: 10px;
     display: flex;
@@ -109,62 +84,29 @@ const banner = theme.value.banner;
     font-size: 16px;
     margin-left: 16px;
 }
-.banner-box {
+
+.banner-box{
     height: 340px;
-    padding-left: 20vw;
     background-color: #f0eefd;
 }
-
-.banner-item1 {
-    margin: 0 auto;
-    padding-top: 80px;
+.banner-title {
+    margin-left: 20vw;
     color: #5248b5;
     font-size: 44px;
 }
 
-.banner-item2 {
-    margin: 0 auto;
-    padding-top: 20px;
+.banner-sub-title {
+    margin-left: 20vw;
     color: #000;
     font-size: 44px;
 }
 
-.banner-item3 {
-    margin: 0 auto;
-    padding-top: 20px;
+.banner-desc {
+    margin-left: 20vw;
     color: rgba(7, 10, 57, 0.6);
     font-size: 16px;
 }
 
-.card {
-    max-width: 70vw;
-    margin: 0 auto;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    border: 1px solid #e9e8e8;
-}
-.title {
-    display: flex;
-    justify-content: space-between;
-    font-size: 24px;
-    font-weight: 700;
-}
-.title1 {
-    font-style: normal;
-    color: #1f7b8f;
-    margin-left: 10px;
-}
-.title2 {
-    color: #2c3e50;
-    font-style: normal;
-    margin-left: 10px;
-    font-weight: 400;
-    font-size: 20px;
-}
-.card-content{
-    max-width: 70vw;
-}
 
 /* 分页 */
 .pagination {
