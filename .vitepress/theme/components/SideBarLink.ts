@@ -1,22 +1,22 @@
 import { h } from 'vue';
-import { useRoute, useData } from 'vitepress';
+import { useRoute, useData, Header } from 'vitepress';
 export const hashRE = /#.*$/
 export const extRE = /(index)?\.(md|html)$/
 export const endingSlashRE = /\/$/
 export const outboundRE = /^[a-z]+:/i
-export function normalize(path) {
+export function normalize(path:string) {
     return decodeURI(path).replace(hashRE, '').replace(extRE, '')
   }
-export function isActive(route, path) {
+export function isActive(route:{data:{relativePath:string}}, path:string) {
     if (path === undefined) {
       return false
     }
     const routePath = normalize(`/${route.data.relativePath}`)
     const pagePath = normalize(path)
-  
+
     return routePath === pagePath
   }
-export function joinUrl(base, path) {
+export function joinUrl(base:string, path:string) {
     const baseEndsWithSlash = base.endsWith('/')
     const pathStartsWithSlash = path.startsWith('/')
     if (baseEndsWithSlash && pathStartsWithSlash) {
@@ -25,10 +25,10 @@ export function joinUrl(base, path) {
     if (!baseEndsWithSlash && !pathStartsWithSlash) {
       return `${base}/${path}`
     }
-  
+
     return base + path
   }
-export const SideBarLink = (props) => {
+export const SideBarLink = (props:any) => {
     const route = useRoute();
     const { site, frontmatter } = useData();
     const depth = props.depth || 1;
@@ -49,7 +49,7 @@ export const SideBarLink = (props) => {
         childItems
     ]);
 };
-function resolveLink(base, path) {
+function resolveLink(base:string, path:string) {
     if (path === undefined) {
         return path;
     }
@@ -59,23 +59,24 @@ function resolveLink(base, path) {
     }
     return joinUrl(base, path);
 }
-function createChildren(active, children, headers, depth = 1) {
+function createChildren(active:boolean, children:any, headers:Array<Header>|undefined, depth = 1) {
     if (children && children.length > 0) {
-        return h('ul', { class: 'sidebar-links' }, children.map((c) => {
+        return h('ul', { class: 'sidebar-links' }, children.map((c:any) => {
             return h(SideBarLink, { item: c, depth });
         }));
     }
-    return active && headers
-        ? createChildren(false, resolveHeaders(headers), undefined, depth)
-        : null;
+    if(active && headers&&Array.isArray(headers)){
+    //    if(createChildren(false, resolveHeaders(headers), undefined, depth)) return createChildren(false, resolveHeaders(headers), undefined, depth);
+    }
+    return null;
 }
-function resolveHeaders(headers) {
+function resolveHeaders(headers:any) {
     return mapHeaders(groupHeaders(headers));
 }
-function groupHeaders(headers) {
-    headers = headers.map((h) => Object.assign({}, h));
-    let lastH2;
-    headers.forEach((h) => {
+function groupHeaders(headers:Array<Header>) {
+    headers = headers.map((h:Header) => Object.assign({}, h));
+    let lastH2:any;
+    headers.forEach((h:Header) => {
         if (h.level === 2) {
             lastH2 = h;
         }
@@ -84,12 +85,20 @@ function groupHeaders(headers) {
             (lastH2.children || (lastH2.children = [])).push(h);
         }
     });
-    return headers.filter((h) => h.level === 2);
+    return headers.filter((h:any) => h.level === 2);
 }
-function mapHeaders(headers) {
-    return headers.map((header) => ({
-        text: header.title,
-        link: `#${header.slug}`,
-        children: header.children ? mapHeaders(header.children) : undefined
-    }));
+function mapHeaders(headers:any) {
+    return headers.map((header:any) => {
+        let children = [];
+        if(header.children ){
+            children = mapHeaders(header.children)
+        }
+        return {
+            text: header.title,
+            link: `#${header.slug}`,
+            children: children
+        }
+    });
+
 }
+

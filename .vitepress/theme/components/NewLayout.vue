@@ -9,7 +9,7 @@
     <Copyright />
    </div>
 </template>
-<script setup>
+<script setup  lang="ts" >
 import Copyright from './Copyright.vue'
 import Nav from './Nav.vue'
 import Page from './Page.vue'

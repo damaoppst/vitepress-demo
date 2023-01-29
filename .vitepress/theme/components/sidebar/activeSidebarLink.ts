@@ -1,7 +1,7 @@
 import { onMounted, onUnmounted, onUpdated } from 'vue';
 export function useActiveSidebarLinks() {
-    let rootActiveLink = null;
-    let activeLink = null;
+    let rootActiveLink: HTMLAnchorElement | null = null;
+    let activeLink: Element | null = null;
     const onScroll = throttleAndDebounce(setActiveLink, 300);
     function setActiveLink() {
         const sidebarLinks = getSidebarLinks();
@@ -11,13 +11,13 @@ export function useActiveSidebarLinks() {
             const nextAnchor = anchors[i + 1];
             const [isActive, hash] = isAnchorActive(i, anchor, nextAnchor);
             if (isActive) {
-                history.replaceState(null, document.title, hash ? hash : ' ');
+                history.replaceState(null, document.title, '');
                 activateLink(hash);
                 return;
             }
         }
     }
-    function activateLink(hash) {
+    function activateLink(hash: any) {
         deactiveLink(activeLink);
         deactiveLink(rootActiveLink);
         activeLink = document.querySelector(`.sidebar a[href="${hash}"]`);
@@ -35,7 +35,7 @@ export function useActiveSidebarLinks() {
             rootActiveLink = null;
         }
     }
-    function deactiveLink(link) {
+    function deactiveLink(link:any) {
         link && link.classList.remove('active');
     }
     onMounted(() => {
@@ -53,19 +53,19 @@ export function useActiveSidebarLinks() {
 function getSidebarLinks() {
     return [].slice.call(document.querySelectorAll('.sidebar a.sidebar-link-item'));
 }
-function getAnchors(sidebarLinks) {
+function getAnchors(sidebarLinks:any) {
     return [].slice
         .call(document.querySelectorAll('.header-anchor'))
-        .filter((anchor) => sidebarLinks.some((sidebarLink) => sidebarLink.hash === anchor.hash));
+        .filter((anchor:any) => sidebarLinks.some((sidebarLink:any) => sidebarLink.hash === anchor.hash));
 }
 function getPageOffset() {
-    return document.querySelector('.nav-bar').offsetHeight;
+    return (document.querySelector('.nav-bar') as HTMLElement).offsetHeight;
 }
-function getAnchorTop(anchor) {
+function getAnchorTop(anchor:any) {
     const pageOffset = getPageOffset();
     return anchor.parentElement.offsetTop - pageOffset - 15;
 }
-function isAnchorActive(index, anchor, nextAnchor) {
+function isAnchorActive(index:number, anchor:any, nextAnchor:any) {
     const scrollTop = window.scrollY;
     if (index === 0 && scrollTop === 0) {
         return [true, null];
@@ -78,8 +78,8 @@ function isAnchorActive(index, anchor, nextAnchor) {
     }
     return [false, null];
 }
-function throttleAndDebounce(fn, delay) {
-    let timeout;
+function throttleAndDebounce(fn:any, delay:any) {
+    let timeout:any;
     let called = false;
     return () => {
         if (timeout) {

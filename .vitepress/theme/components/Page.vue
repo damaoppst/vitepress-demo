@@ -48,42 +48,8 @@ const banner = theme.value.banner;
 .mg-t{
     margin-top: 20px;
 }
-.category{
-    display: flex;
-    align-content: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 70vw;
-    margin: 0 auto;
-    margin-bottom: 20px;
-}
-.category .item{
-    flex: 1;
-    padding: 30px 40px;
-    margin: 4px;
-    font-size: 16px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.item-bg1{
-    background-color: #f0faf9;
-}
-.item-bg2{
-    background-color: #ffebf5;
-}
-.item-bg3{
-    background-color: #fff0ed;
-}
-.category .item .title{
-    margin-left: 16px;
-    font-size: 16px;
-}
-.category .item .icon{
-    font-size: 16px;
-    margin-left: 16px;
-}
+
+
 
 .banner-box{
     height: 340px;

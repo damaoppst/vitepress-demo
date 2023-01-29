@@ -17,9 +17,9 @@ export const useLang = () => {
   return computed(() => {
     // the first part of the first slash
     const path = route.data?.relativePath
-    let lang = ''
+    let lang:string|undefined = ''
 
-    if (path?.includes('/')) {
+    if (path&&path.includes('/')) {
       lang = path.split('/').shift()
     } else {
       lang = defaultLang

@@ -23,9 +23,9 @@ export function useSideBar() {
         }
         // now, there's no sidebar setting at frontmatter; let's see the configs
         const themeSidebar = getSideBarConfig(
-            site.value.themeConfig.sidebar, 
+            site.value.themeConfig.sidebar,
             route.data.relativePath,
-            lang.value
+            lang.value?lang.value:''
             );
         if (themeSidebar === false) {
             return [];
@@ -36,12 +36,15 @@ export function useSideBar() {
         return themeSidebar;
     });
 }
-function resolveAutoSidebar(headers, depth) {
-    const ret = [];
+function resolveAutoSidebar(headers:Array<{ level:number, title:string, slug:string }>, depth:number) {
+    const ret:Array<{
+        text: string,
+        link: string
+    }> = [];
     if (headers === undefined) {
         return [];
     }
-    let lastH2 = undefined;
+    let lastH2:any = undefined;
     headers.forEach(({ level, title, slug }) => {
         if (level - 1 > depth) {
             return;

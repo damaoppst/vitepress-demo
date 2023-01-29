@@ -10,7 +10,7 @@
         </div>
     </header>
 </template>
-<script setup>
+<script setup  lang="ts" >
 import { useData } from 'vitepress'
 
 const { theme } = useData()
