@@ -17,6 +17,7 @@ async function config() {
                 { text: '首页', link: '/' ,icon:'🌊'},
                 { text: 'DEMO', link: '/pages/demo',icon:'🌞' },
                 { text: '搜索', link: '/pages/search' ,icon:'🔎'},
+                { text: '归档', link: '/pages/archives',tag:'archives',target:'_self'},
             ],
             banner:{
                 title:'标题',

@@ -4,7 +4,7 @@
             <div class="banner-sub-title">随笔</div>
         </div>
     <div class="archives-box">
-        <div v-for="yearList in data">
+        <div v-for="(yearList,index) in data" :key="index">
             <div class="year">
                 {{ yearList[0].frontMatter.date.split('-')[0] }}
             </div>
