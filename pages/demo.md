@@ -1,7 +1,7 @@
 ---
 page: true
-title: javascript笔记
-description: javascript笔记
+title: demo笔记
+description: demo笔记
 sidebar: false
 ---
 <Default/>

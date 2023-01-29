@@ -4,7 +4,7 @@ async function config() {
     const pageSize = 30
     await generatePaginationPages(pageSize)
     return {
-        title: 'PPST',
+        title: 'demo',
         base:'/',
         description: 'vitepress,blog,blog-theme',
         lang:'zh',
@@ -12,7 +12,7 @@ async function config() {
             posts: await getPosts(),
             pageSize: pageSize,
             website: 'http://git.ppst.top/ppst/vitepress-demo',
-            logoTitle:'PPST',
+            logoTitle:'vitepress-demo',
             nav: [
                 { text: '首页', link: '/' ,icon:'🌊'},
                 { text: 'DEMO', link: '/pages/demo',icon:'🌞' },
